@@ -1,10 +1,10 @@
-export const paper = {
+const paper = {
     product: 'Paper',
     price: 100,
     amount: 10,
 }
 
-export const invoices = [
+const invoices = [
     {
         id: 1,
         name: 'Stationery', 
@@ -69,6 +69,34 @@ export const invoices = [
     }    
 ];
 
-export const invoiceByClientName = (clientName) => {
+const invoiceByClientName = (clientName) => {
     return invoices.find(invoice => invoice.client.name === clientName)
+}
+
+const invoiceById = (id) => {
+    return invoices.find(invoice => invoice.id === id)
+}
+
+const findInvoiceById = (id) => {
+    const promise = new Promise( (resolve, reject) => {
+            setTimeout(() => {
+                const result = invoiceById(id);
+
+                if(result) {
+                    resolve(result);
+                } else {
+                    reject('Error with the id');
+                }
+            }, 2500);
+        }
+    );
+    return promise;
+}
+
+export {
+    paper, 
+    invoices as default, 
+    invoiceByClientName, 
+    invoiceById,
+    findInvoiceById
 }
