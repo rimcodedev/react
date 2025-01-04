@@ -6,7 +6,7 @@ export const HelloWorld = ( {user, id, title = 'Hello World!'} ) => {
     return (        
         <>
             <h1>{title}</h1>
-            <p>Welcome user {user} with the id {id + 10}</p>
+            <p>Welcome user {user.name} with the id {id + 10}</p>
         </>
     );
 }
