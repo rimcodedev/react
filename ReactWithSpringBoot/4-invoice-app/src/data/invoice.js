@@ -18,16 +18,19 @@ export const invoice = {
     },
     items: [
         {
+            id: 1,
             product: 'Motherboard ASUS',
             price: 150,
             quantity: 1
         },
         {
+            id: 2,
             product: 'CPU Intel i7',
             price: 250,
             quantity: 1
         },
         {
+            id: 3,
             product: 'Asus Monitor 24',
             price: 175,
             quantity: 2
