@@ -1,59 +1,58 @@
 import { getInvoice } from "../services/getInvoice";
+import { InvoiceView } from "./InvoiceView";
+import { ClientView } from "./ClientView";
+import { CompanyView } from "./CompanyView";
 
 export const InvoiceApp = () => {
 
     const { id, name, client, company, items } = getInvoice();
-    const { name: nameClient, lastname } = client;
-    const { street, city, zip, country, number } = client.address;
 
     return (
         <>
-            <h1>Invoice Example</h1>
-            <ul>
-                <li>Id: {id}</li>
-                <li>Name: {name}</li>
-                <li>Client: {client.name} {client.lastname}</li>
-                <li>Address: {street} {number}, {city} {zip}, {country}</li>
-                <li>Company: {company.name}</li>
-            </ul>
+            <div className="container">
+                <div className="card my-3">
+                    <div className="card-header">
+                        Invoice Example
+                    </div>
+                    <div className="card-body">
+                        <InvoiceView id={ id } name={ name } />
 
-            <h3>Client data</h3>
-            <ul>
-                <li>Name and lastname: {nameClient} {lastname}</li>
-                <li>City: {city}</li>
-                <li>Street: {street}</li>
-                <li>Zip: {zip}</li>
-                <li>Country: {country}</li>
-            </ul>
+                        <div className="row my-3">
+                            <div className="col">
+                                <ClientView title="Client data" client={ client } />
+                            </div>
 
-            <h3>Company data</h3>
-            <ul>
-                <li>Name: {company.name}</li>
-                <li>TaxId: {company.taxId}</li>
-            </ul>
+                            <div className="col">
+                                <CompanyView title="Company data" company={ company } />
+                            </div>
+                        </div>
 
-            <h4>Invoice Items</h4>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map(({id, product, price, quantity}) => 
-                        (
-                            <tr key={id}>
-                                <td>{product}</td>
-                                <td>{price}</td>
-                                <td>{quantity}</td>
-                            </tr>
-                        )
-                   )}
-                </tbody>
-            </table>
+                        <h4>Invoice Items</h4>
+                        <table className="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {items.map(({ id, product, price, quantity }) =>
+                                (
+                                    <tr key={id}>
+                                        <td>{product}</td>
+                                        <td>{price}</td>
+                                        <td>{quantity}</td>
+                                    </tr>
+                                )
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
+
 
