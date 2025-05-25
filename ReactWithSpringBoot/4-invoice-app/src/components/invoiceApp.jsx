@@ -2,6 +2,7 @@ import { getInvoice } from "../services/getInvoice";
 import { InvoiceView } from "./InvoiceView";
 import { ClientView } from "./ClientView";
 import { CompanyView } from "./CompanyView";
+import { ListItemsViews } from "./ListItemsViews";
 
 export const InvoiceApp = () => {
 
@@ -27,27 +28,7 @@ export const InvoiceApp = () => {
                             </div>
                         </div>
 
-                        <h4>Invoice Items</h4>
-                        <table className="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {items.map(({ id, product, price, quantity }) =>
-                                (
-                                    <tr key={id}>
-                                        <td>{product}</td>
-                                        <td>{price}</td>
-                                        <td>{quantity}</td>
-                                    </tr>
-                                )
-                                )}
-                            </tbody>
-                        </table>
+                        <ListItemsViews title="Invoice Items" items={ items } />
                     </div>
                 </div>
             </div>
